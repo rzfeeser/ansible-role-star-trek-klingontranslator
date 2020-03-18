@@ -6,7 +6,7 @@ A brief description of the role goes here.
 Requirements
 ------------
 
-No requirements other than the user of the playbook must enter the ENGLISH phrase they would like translated into Klingon via a vars prompting (at the start fo the playbook).
+No requirements other than the user of the playbook must enter the ENGLISH phrase they would like translated into Klingon via a vars prompting (at the start of the playbook).
 
 Role Variables
 --------------
