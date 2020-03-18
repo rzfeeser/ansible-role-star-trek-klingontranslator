@@ -1,0 +1,26 @@
+---
+# tasks file for ansible-role-star-trek-klingontranslator
+- name: Learn to speak Klingon!
+  uri:
+        url: https://api.funtranslations.com/translate/klingon.json
+        method: POST
+        body_format: form-urlencoded
+        body:
+          text: "{{ phrase }}"  # this is what we want to have translated
+  register: startrek
+
+- name: Show our results
+  debug:
+          msg: "(English) {{ startrek.json.contents.text }}\n(Klingon) {{ startrek.json.contents.translated }}"
+          # this is the part of the JSON with our response
+
+- name: Ensure a home exists for the klingon dictionary
+  file:
+          state: directory
+          path: ~/klingon/   # all intermediate sub directories will be created
+
+- name: Write out the output
+  lineinfile:
+          line: "(English) {{ startrek.json.contents.text }} (Klingon) {{ startrek.json.contents.translated }}\n"
+          path: ~/klingon/klingon_dictionary.txt   # where the file is to write to
+          create: yes   # create the file if it is not yet created otherwise will fail
